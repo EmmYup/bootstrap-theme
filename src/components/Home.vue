@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+<div class="home">
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -113,15 +113,14 @@
   <footer>
     <p class="text-center">TechScroll Copyright &copy; 2017</p>
   </footer>
-  </div>
+</div>
 </template>
 
 <script>
 export default {
   name: 'home',
-  data () {
-    return {
-    }
+  data() {
+    return {}
   },
   created() {
     window.sr = ScrollReveal()
@@ -161,6 +160,21 @@ export default {
       origin: 'right',
       distance: '300px',
       viewFactor: 0.2
+    });
+    $(function() {
+      // Smooth Scrolling
+      $('a[href*="#"]:not([href="#"])').click(function() {
+        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+          if (target.length) {
+            $('html, body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+          }
+        }
+      });
     });
   }
 }
